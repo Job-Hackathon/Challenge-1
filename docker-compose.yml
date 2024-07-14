@@ -1,0 +1,8 @@
+version: "3"
+services:
+  backend:
+    build: ./Backend
+    ports:
+      - "4000:4000"
+  discordbot:
+    build: ./DiscordBot
