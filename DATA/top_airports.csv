@@ -1,3 +1,4 @@
+country_code,region_name,iata,icao,airport,latitude,longitude
 QA,Ad Dawhah,DIA,OTBD,Doha International Airport,25.2611,51.5651
 SG,Singapore,SIN,WSSS,Singapore Changi Airport,1.35019,103.994
 FR,Ile-de-France,CDG,LFPG,Paris Charles de Gaulle Airport,49.0097,2.54778
@@ -66,4 +67,3 @@ VN,Da Nang,DAD,VVDN,Da Nang International Airport,16.0439,108.199
 US,New Hampshire,MHT,KMHT,Manchester-Boston Regional Airport,42.9326,-71.4357
 CN,Hunan,CSX,ZGHA,Changsha Huanghua International Airport,28.1892,113.22
 US,Minnesota,DTL,KDTL,Detroit Lakes Airport (Wething Field),46.8252,-95.8857
-US,New Hampshire,BML,KBML,Berlin Regional Airport,44.5754,-71.1759

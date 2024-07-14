@@ -1,0 +1,396 @@
+Doha Hamad
+2
+2023
+2
+Singapore Changi
+1
+2023
+3
+Seoul Incheon
+4
+2023
+4
+Tokyo Haneda
+3
+2023
+5
+Tokyo Narita
+9
+2023
+6
+Paris CDG
+5
+2023
+7
+Dubai
+17
+2023
+8
+Munich
+7
+2023
+9
+Zurich
+8
+2023
+10
+Istanbul
+6
+2023
+11
+Hong Kong
+33
+2023
+12
+Rome Fiumicino
+13
+2023
+13
+Vienna
+11
+2023
+14
+Helsinki-Vantaa
+12
+2023
+15
+Madrid Barajas
+10
+2023
+16
+Centrair Nagoya
+16
+2023
+17
+Vancouver
+20
+2023
+18
+Kansai
+15
+2023
+19
+Melbourne
+19
+2023
+20
+Copenhagen
+14
+2023
+21
+London Heathrow
+22
+2023
+22
+Bahrain
+26
+2023
+23
+Amsterdam Schiphol
+29
+2023
+24
+Seattle-Tacoma
+18
+2023
+25
+Guangzhou
+24
+2023
+26
+Fukuoka
+30
+2023
+27
+Haikou Meilan
+28
+2023
+28
+Jakarta
+43
+2023
+29
+Houston Hobby
+32
+2023
+30
+Paris Orly
+39
+2023
+31
+Dusseldorf
+21
+2023
+32
+Brisbane
+23
+2023
+33
+New York LGA
+57
+2023
+34
+Frankfurt
+25
+2023
+35
+Riyadh
+27
+2023
+36
+Delhi
+36
+2023
+37
+Shenzhen
+31
+2023
+38
+Houston George Bush
+35
+2023
+39
+Bogota
+37
+2023
+40
+Muscat
+42
+2023
+41
+Quito
+40
+2023
+42
+Hamburg
+38
+2023
+43
+Barcelona
+34
+2023
+44
+Shanghai Hongqiao
+50
+2023
+45
+Auckland
+51
+2023
+46
+Cincinnati/Northern Kentucky
+46
+2023
+47
+San Francisco
+48
+2023
+48
+London Gatwick
+55
+2023
+49
+New Chitose
+102
+2023
+50
+Medina
+52
+2023
+51
+Dammam
+44
+2023
+52
+Perth
+58
+2023
+53
+Montréal
+45
+2023
+54
+Cape Town
+47
+2023
+55
+Sydney
+49
+2023
+56
+Jeddah
+41
+2023
+57
+Baku
+53
+2023
+58
+Bangkok Suvarnabhumi
+68
+2023
+59
+Bangalore
+69
+2023
+60
+Los Angeles
+63
+2023
+61
+Hyderabad
+65
+2023
+62
+Abu Dhabi
+87
+2023
+63
+Toronto Pearson
+64
+2023
+64
+Dallas/Fort Worth
+66
+2023
+65
+Adelaide
+73
+2023
+66
+Taiwan Taoyuan
+82
+2023
+67
+Athens
+60
+2023
+68
+Gold Coast
+54
+2023
+69
+Denver
+71
+2023
+70
+Atlanta
+62
+2023
+71
+Kuala Lumpur
+67
+2023
+72
+Durban King Shaka
+61
+2023
+73
+Chengdu Tianfu
+59
+2023
+74
+Denpasar Bali
+80
+2023
+75
+Oslo
+76
+2023
+76
+Seoul Gimpo
+74
+2023
+77
+Budapest
+77
+2023
+78
+Osaka Itami
+95
+2023
+79
+Phoenix Sky Harbor
+94
+2023
+80
+Porto
+81
+2023
+81
+Stockholm Arlanda
+85
+2023
+82
+London City
+70
+2023
+83
+Johannesburg
+75
+2023
+84
+Málaga
+78
+2023
+85
+Malta
+79
+2023
+86
+Minneapolis St.Paul
+99
+2023
+87
+Lyon
+98
+2023
+88
+Milan Malpensa
+86
+2023
+89
+Cologne / Bonn
+56
+2023
+90
+Lisbon
+83
+2023
+91
+Okinawa
+199
+2023
+92
+Goa Manohar
+93
+New York JFK
+88
+2023
+94
+Da Nang
+111
+2023
+95
+Mumbai
+84
+2023
+96
+Hanoi Noi Bai
+127
+2023
+97
+Boston Logan
+96
+2023
+98
+Changsha
+97
+2023
+99
+Detroit
+104
+2023
+100
+Berlin Brandenburg
+120
