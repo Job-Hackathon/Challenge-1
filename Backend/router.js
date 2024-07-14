@@ -12,9 +12,10 @@ router.post('/api/v1/close-airports', (req, res) => {
 
     const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
     const ca = close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
-    res.json(ca)
+    res.json(ca);
 
 });
+
 
 
 router.get("/", (req, res) => {});
@@ -45,3 +46,4 @@ router.get("/api/v1/airport_list", (req, res) => {
 });
 
 module.exports = router;
+

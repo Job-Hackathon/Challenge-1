@@ -128,6 +128,18 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
         if (weatherData.current.temperature2m > maxTemp || weatherData.current.temperature2m < minTemp) continue;
         valid_airports.push(airport_in_radius);
 
+        const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, airport_in_radius[5], airport_in_radius[6]);
+
+
+        valid_airports.push({
+            destinationAirportCode: airport_in_radius[2],
+            destinationAirportName: airport_in_radius[4],
+            distance: distance,
+            target_weather: "sunny",
+            locationTemperature: weatherData.current.temperature2m,
+            imageUrl: 'test'
+        });
+
     }
 
     return valid_airports;
