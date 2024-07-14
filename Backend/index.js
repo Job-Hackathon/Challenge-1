@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 
 express()
   .use(cors())
+  .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: false }))
   .use("/", router)
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
