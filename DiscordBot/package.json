@@ -1,0 +1,16 @@
+{
+  "name": "discord-bot-template",
+  "version": "1.0.0",
+  "description": "A discord bot template written in NodeJS with implementet Command and Event Handler",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "discord.js": "^14.15.2"
+  }
+}
