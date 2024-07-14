@@ -138,9 +138,9 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             destinationAirportCode: airport_in_radius[2],
             destinationAirportName: airport_in_radius[4],
             distance: distance,
-            target_weather: "sunny",
+            target_weather: "cooming soon!",
             locationTemperature: weatherData.current.temperature2m,
-            imageUrl: 'test'
+            imageUrl: 'cooming soon!'
         });
 
     }
@@ -148,10 +148,6 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
     return valid_airports;
 
 }
-
-(async () => {
-    console.log(await close_airports("DIA", 1000, "test", 0, 100));
-})
 
 module.exports = {
     close_airports
