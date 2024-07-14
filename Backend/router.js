@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { close_airports, close_airports } = require('./apifetcher');
+const { close_airports } = require('./apifetcher');
 
 router.post('/api/v1/close-airports', (req, res) => {
 
-    const { originairportcode, maxradius, startdate } = req.body;
-    const ca = close_airports()
+    const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
+    const ca = close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
+    res.json(ca)
 
 });
 

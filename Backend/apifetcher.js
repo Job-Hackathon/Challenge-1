@@ -76,9 +76,9 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
 
     const valid_airports = [];
     const origin_cords = await get_cords_by_iata(IATA);
-    const aiports_in_radius = await get_airports_in_radius(origin_cords, max_radius);
+    const airports_in_radius = await get_airports_in_radius(origin_cords, max_radius);
 
-    for (const airport_in_radius of aiports_in_radius) {
+    for (const airport_in_radius of airports_in_radius) {
 
         const parms = {
             "latitude": airport_in_radius[5],
@@ -124,18 +124,15 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             },
         
         };
-        
-        console.log(weatherData.current)
+    
+        if (weatherData.current.temperature2m > maxTemp || weatherData.current.temperature2m < minTemp) continue;
+        valid_airports.push(airport_in_radius);
 
-        //if (weatherData.current.temperature2m > maxTemp || weatherData.current.temperature2m < minTemp) continue;
-     
     }
 
-}
+    return valid_airports;
 
-(async () => {
-    console.log(await close_airports("MUC", 500, null, null, null));
-})();
+}
 
 module.exports = {
     close_airports
