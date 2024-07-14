@@ -1,3 +1,4 @@
+country_code,region_name,iata,icao,airport,latitude,longitude
 QA,Ad Dawhah,DIA,OTBD,Doha International Airport,25.2611,51.5651
 SG,Singapore,SIN,WSSS,Singapore Changi Airport,1.35019,103.994
 FR,Ile-de-France,CDG,LFPG,Paris Charles de Gaulle Airport,49.0097,2.54778
