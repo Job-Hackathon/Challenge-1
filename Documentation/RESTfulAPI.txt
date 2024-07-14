@@ -1,0 +1,53 @@
+VERB
+ENDPOINT
+INPUT
+OUTPUT
+------------
+------------
+POST
+------------
+api/v1/close-airports
+------------
+TravelStartDTO{
+	OriginAirportCode: String
+	MaxRadius: Integer
+	TargetWeather: String
+}
+------------
+List<PossibleTravelTargetDTO> {
+	DestinationAirportCode: String
+	Distance: Integer
+	TargetWeather: String
+	ImageURL: String
+}
+------------
+------------
+POST
+------------
+api/v1/travel-content
+------------
+TravelContentDTO {
+	DestinationAirportCode: String
+	MinimumTripDuration: Integer
+	MaximumTripDuration: Integer
+	StartDate: Date
+}
+------------
+TravelOptionsDTO {
+	DestinationCountry: String
+	DestinationCity: String
+	flights: List<PossibleFlightlDTO> {
+		TODO
+	}
+	hotels: List<PossibleHotelDTO> {
+		TODO
+	}
+	weather: List<DayWeatherPredictionDTO> {
+		TODO
+	}
+	usefulLinks: List<String>
+}
+------------
+------------
+
+
