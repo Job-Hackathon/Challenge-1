@@ -19,7 +19,7 @@ router.post('/api/v1/close-airports', (req, res) => {
 
 router.get("/", (req, res) => {});
 
-router.get("/airport_list", (req, res) => {
+router.get("/api/v1/airport_list", (req, res) => {
   const { substring } = req.query;
 
   if (!substring) {

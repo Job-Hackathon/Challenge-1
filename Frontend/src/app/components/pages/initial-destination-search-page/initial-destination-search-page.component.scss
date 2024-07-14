@@ -1,0 +1,9 @@
+.btn.active {
+  background-color: #ffc107; /* Bootstrap's warning color for active state */
+  color: #212529; /* Text color for active state */
+  border-color: #ffc107; /* Border color for active state */
+}
+
+.btn.active i {
+  color: #212529; /* Icon color for active state */
+}
