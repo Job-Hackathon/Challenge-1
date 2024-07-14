@@ -69,6 +69,7 @@ const get_airports_in_radius = async (origin_cords, radius) => {
         const latitude = parseFloat(airport[5]);
         const longitude = parseFloat(airport[6]);
         const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, latitude, longitude);
+        if (distance == 0) continue;
         if (distance <= radius) {
             valid_airports.push(airport)
         }
