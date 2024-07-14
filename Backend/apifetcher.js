@@ -1,24 +1,29 @@
 const fs = require('fs').promises;
 const Papa = require('papaparse');
 const { fetchWeatherApi } = require('openmeteo')
+const path = require('path');
 
+const get_cords_by_iata = async (i) => {
+    try {
+        console.log(i);
+        const filePath = path.join(__dirname, '../DATA/top_airports.csv');
+        const filecontent = await fs.readFile(filePath, 'utf-8');
+        const { data } = Papa.parse(filecontent, { header: false });
 
-
-
-const get_cords_by_iata = async (IATA) => {
-    
-    const filecontent = await fs.readFile('../DATA/top_airports.csv', 'utf-8');
-    const { data } = Papa.parse(filecontent, {header: false});
-
-    for (const row of data) {
-        if (row[2] == IATA) {
-            return {
-                latitude: row[5],
-                longitude: row[6],
-            };
+        for (const row of data) {
+            if (row[2] == i) {
+                return {
+                    latitude: row[5],
+                    longitude: row[6],
+                };
+            }
         }
-    }
 
+        throw new Error(`Airport with IATA code ${IATA} not found`);
+    } catch (error) {
+        console.error(`Error in get_cords_by_iata function: ${error.message}`);
+        throw error;
+    }
 }
 
 const get_all_airports = async () => {
@@ -126,18 +131,16 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
         };
     
         if (weatherData.current.temperature2m > maxTemp || weatherData.current.temperature2m < minTemp) continue;
-        valid_airports.push(airport_in_radius);
 
         const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, airport_in_radius[5], airport_in_radius[6]);
-
 
         valid_airports.push({
             destinationAirportCode: airport_in_radius[2],
             destinationAirportName: airport_in_radius[4],
             distance: distance,
-            target_weather: "sunny",
+            target_weather: "cooming soon!",
             locationTemperature: weatherData.current.temperature2m,
-            imageUrl: 'test'
+            imageUrl: 'cooming soon!'
         });
 
     }
