@@ -8,7 +8,7 @@ module.exports = async (client, interaction) => {
 
             const modal = new ModalBuilder()
             .setCustomId('cw')
-            .setTitle('Weather App')
+            .setTitle('Destination Finder')
 
             const Airport = new TextInputBuilder()
             .setCustomId('airport')
