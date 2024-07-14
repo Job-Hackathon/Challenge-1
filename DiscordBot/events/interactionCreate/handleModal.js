@@ -14,7 +14,7 @@ module.exports = async (client, interaction) => {
         try {
 
         
-    let replystr = "# Job Weather App \n";
+    let replystr = "# Job Destiniation Finder \n";
 
     axios.post('http://127.0.0.1:4000/api/v1/close-airports', {
         originAirportCode: airport,
