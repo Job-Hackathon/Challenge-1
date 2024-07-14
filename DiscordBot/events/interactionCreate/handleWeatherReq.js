@@ -12,7 +12,7 @@ module.exports = async (client, interaction) => {
 
             const Airport = new TextInputBuilder()
             .setCustomId('airport')
-            .setLabel('Airport')
+            .setLabel('Airport Code (IATA)')
             .setStyle(TextInputStyle.Short)
 
             const Entfernung = new TextInputBuilder()
