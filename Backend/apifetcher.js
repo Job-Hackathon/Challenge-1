@@ -20,9 +20,11 @@ const get_cords_by_iata = async (i) => {
         }
 
         throw new Error(`Airport with IATA code ${IATA} not found`);
-    } catch (error) {
+    } catch (error) { 
         console.error(`Error in get_cords_by_iata function: ${error.message}`);
+        return "err";
         throw error;
+        
     }
 }
 
@@ -150,5 +152,6 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
 }
 
 module.exports = {
-    close_airports
+    close_airports,
+    get_cords_by_iata
 };

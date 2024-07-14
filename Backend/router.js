@@ -6,12 +6,16 @@ const csv = require("csv-parser");
 
 const csvFilePath = "../DATA/airport_data.csv";
 
-const { close_airports } = require('./apifetcher');
+const { close_airports, get_cords_by_iata } = require('./apifetcher');
 
 router.post('/api/v1/close-airports', async (req, res) => {
 
 
     const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
+    if (await get_cords_by_iata(originAirportCode) == "err") {
+      res.json({"error": "Airportcode not found"});
+      return;
+    }
     const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
 
     res.json(ca);
