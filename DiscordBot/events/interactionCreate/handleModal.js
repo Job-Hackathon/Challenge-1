@@ -13,7 +13,9 @@ module.exports = async (client, interaction) => {
 
         try {
 
-                
+        
+    let replystr = "# Job Weather App \n";
+
     axios.post('http://127.0.0.1:4000/api/v1/close-airports', {
         originAirportCode: airport,
         maxRadius: distance,
@@ -22,11 +24,34 @@ module.exports = async (client, interaction) => {
         maximalTemperature: maxtemp
     })
     .then(response => {
-        console.log('Response:', response.data);
-    })
-    .catch(error => {
+
+        if (Array.isArray(response.data)) {
+            
+            response.data.forEach((item, index) => {
+                
+                const str = "\n**Name:** " + item.destinationAirportName + "\n"
+                + "**Code:** " + item.destinationAirportCode + "\n" +
+                "**Distance:** " + Math.round(item.distance) + "km\n" + 
+                "**Temperatur:** " + Math.round(item.locationTemperature) + "°C\n" + 
+                "**Wetter:** " + item.target_weather + "\n"
+            replystr = replystr + str;
+            });
+    
+
+        } 
+        interaction.reply({
+            content: replystr,
+            ephemeral: true
+        });
+        
+    }).catch(error => {
+        interaction.reply({
+            content: "Es gab einen Fehler!",
+            ephemeral: true
+        });
         console.error('Error:', error);
     });
+    
  
 
 
