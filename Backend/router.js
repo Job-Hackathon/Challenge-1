@@ -10,8 +10,10 @@ const { close_airports } = require('./apifetcher');
 
 router.post('/api/v1/close-airports', async (req, res) => {
 
-    const { iata, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
-    const ca = await close_airports(iata, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
+
+    const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
+    const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
+
     res.json(ca);
 
 });

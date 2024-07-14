@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TravelStartDto, AirportDto } from '../../../dtos';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
-import { AirportAutocompleteService } from '../../../services';
+import { AirportAutocompleteService, AirportFinderService } from '../../../services';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap, filter } from 'rxjs/operators';
@@ -17,7 +17,8 @@ import { debounceTime, switchMap, filter } from 'rxjs/operators';
 export class InitialDestinationSearchPageComponent implements OnInit {
 
   constructor(
-    private airportAutocompleteService: AirportAutocompleteService
+    private airportAutocompleteService: AirportAutocompleteService,
+    private airportFinderService: AirportFinderService
   ) {}
 
   travelStartDto: TravelStartDto = {
@@ -56,6 +57,14 @@ export class InitialDestinationSearchPageComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     console.log(this.travelStartDto);
+    this.airportFinderService.getTargetAirports(this.travelStartDto).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 
