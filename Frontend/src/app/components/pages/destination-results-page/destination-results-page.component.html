@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="mt-3" style="margin-left: 4em">Schon sind wir ein kleines Stück näher...</h1>
+
+  <h5>
+    Searching for a destination at a maximum radius of {{ request.maxRadius }} from the start
+    airport <strong>{{ request.originAirportCode }}</strong> with a temperature between
+    {{ request.minimalTemperature }} and {{ request.maximalTemperature }} and a weather condition of {{ request.targetWeather }}
+  </h5>
+
+  <div class="row">
+    <ng-container *ngFor="let destination of results">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <app-destination-card [destination]="destination"></app-destination-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

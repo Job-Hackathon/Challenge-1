@@ -6,6 +6,7 @@ import { AirportAutocompleteService, AirportFinderService } from '../../../servi
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { debounceTime, switchMap, filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-initial-destination-search-page',
@@ -18,15 +19,16 @@ export class InitialDestinationSearchPageComponent implements OnInit {
 
   constructor(
     private airportAutocompleteService: AirportAutocompleteService,
-    private airportFinderService: AirportFinderService
+    private airportFinderService: AirportFinderService,
+    private router: Router
   ) {}
 
   travelStartDto: TravelStartDto = {
     originAirportCode: "",
-    maxRadius: 100,
+    maxRadius: 2000,
     targetWeather: "sunny",
-    minimalTemperature: 20,
-    maximalTemperature: 30
+    minimalTemperature: 10,
+    maximalTemperature: 40
   };
 
   currentInputFieldValue: string = "";
@@ -56,10 +58,9 @@ export class InitialDestinationSearchPageComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
-    console.log(this.travelStartDto);
     this.airportFinderService.getTargetAirports(this.travelStartDto).subscribe(
       (res) => {
-        console.log(res);
+        this.router.navigate(['/destination-results'], { state: { results: res, request:  this.travelStartDto} });
       },
       (error) => {
         console.log(error);
@@ -78,7 +79,6 @@ export class InitialDestinationSearchPageComponent implements OnInit {
     const selectedAirport = this.matchingAirports.find(airport => airport.airport === selectedAirportName);
     if (selectedAirport) {
       this.travelStartDto.originAirportCode = selectedAirport.iata;
-      console.log('Selected airport:', selectedAirport);
     }
   }
 }
