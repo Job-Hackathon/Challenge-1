@@ -202,7 +202,89 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
 
 }
 
+const get_airport_weather = async (iata) => {
+
+    const cords = await get_cords_by_iata(iata);
+    console.log(cords.latitude +  " | " + cords.longitude)
+
+    try {
+        const params = {
+            "latitude": cords.latitude,
+            "longitude": cords.longitude,
+            "daily": ["temperature_2m_max", "temperature_2m_min", "sunrise", "sunset", "daylight_duration", "sunshine_duration", "uv_index_max", "uv_index_clear_sky_max", "rain_sum", "showers_sum", "snowfall_sum", "wind_speed_10m_max", "wind_gusts_10m_max", "wind_direction_10m_dominant"],
+            "timezone": "Europe/Berlin"
+        };
+        const url = "https://api.open-meteo.com/v1/forecast";
+        const responses = await fetchWeatherApi(url, params);
+
+        const range = (start, stop, step) =>
+            Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
+
+        const response = responses[0];
+
+        const utcOffsetSeconds = response.utcOffsetSeconds();
+        const timezone = response.timezone();
+        const timezoneAbbreviation = response.timezoneAbbreviation();
+        const latitude = response.latitude();
+        const longitude = response.longitude();
+        
+        const daily = response.daily();
+        
+        const weatherData = {
+        
+            daily: {
+                time: range(Number(daily.time()), Number(daily.timeEnd()), daily.interval()).map(
+                    (t) => new Date((t + utcOffsetSeconds) * 1000)
+                ),
+                temperature2mMax: daily.variables(0)?.valuesArray(),
+                temperature2mMin: daily.variables(1)?.valuesArray(),
+                sunrise: daily.variables(2)?.valuesArray(),
+                sunset: daily.variables(3)?.valuesArray(),
+                daylightDuration: daily.variables(4)?.valuesArray(),
+                sunshineDuration: daily.variables(5)?.valuesArray(),
+                uvIndexMax: daily.variables(6)?.valuesArray(),
+                uvIndexClearSkyMax: daily.variables(7)?.valuesArray(),
+                rainSum: daily.variables(8)?.valuesArray(),
+                showersSum: daily.variables(9)?.valuesArray(),
+                snowfallSum: daily.variables(10)?.valuesArray(),
+                windSpeed10mMax: daily.variables(11)?.valuesArray(),
+                windGusts10mMax: daily.variables(12)?.valuesArray(),
+                windDirection10mDominant: daily.variables(13)?.valuesArray(),
+            },
+        
+        };
+        
+        const resp = [];
+
+        for (let i = 0; i < weatherData.daily.time.length; i++) {
+            
+            resp.push({
+                time: weatherData.daily.time[i],
+                temperature2mMax: weatherData.daily.temperature2mMax[i],
+                temperature2mMin: weatherData.daily.temperature2mMin[i],
+                daylightDuration: weatherData.daily.daylightDuration[i],
+                sunshineDuration: weatherData.daily.sunshineDuration[i],
+                uvIndexMax: weatherData.daily.uvIndexMax[i],
+                uvIndexClearSkyMax: weatherData.daily.uvIndexClearSkyMax[i],
+                rainSum: weatherData.daily.rainSum[i],
+                showersSum: weatherData.daily.showersSum[i],
+                snowfallSum: weatherData.daily.snowfallSum[i],
+                windSpeed10mMax: weatherData.daily.windSpeed10mMax[i],
+                windGusts10mMax: weatherData.daily.windGusts10mMax[i],
+                windDirection10mDominant: weatherData.daily.windDirection10mDominant[i]
+            });
+            
+           
+        }
+        return resp;
+    } catch(e) {console.error("Errow while fetching: " + e);}
+
+    
+
+};
+
 module.exports = {
     close_airports,
-    get_cords_by_iata
+    get_cords_by_iata,
+    get_airport_weather
 };

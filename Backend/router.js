@@ -6,7 +6,7 @@ const csv = require("csv-parser");
 
 const csvFilePath = "../DATA/airport_data.csv";
 
-const { close_airports, get_cords_by_iata } = require('./apifetcher');
+const { close_airports, get_cords_by_iata, get_airport_weather } = require('./apifetcher');
 
 router.post('/api/v1/close-airports', async (req, res) => {
 
@@ -22,6 +22,16 @@ router.post('/api/v1/close-airports', async (req, res) => {
      });
     }
 
+});
+
+router.get('/api/v1/airport-weather', async (req, res) => {
+  
+      const iata = req.query.iata;
+      console.log(iata);
+      const aw = await get_airport_weather(iata);
+      res.status(200).json(aw);
+
+  
 });
 
 
