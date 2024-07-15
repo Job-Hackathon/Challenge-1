@@ -31,6 +31,8 @@ export class InitialDestinationSearchPageComponent implements OnInit {
     maximalTemperature: 40
   };
 
+  loading: boolean = false; // Variable to control loading overlay
+
   currentInputFieldValue: string = "";
 
   matchingAirports: AirportDto[] = [];
@@ -58,11 +60,14 @@ export class InitialDestinationSearchPageComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
+    this.loading = true;
     this.airportFinderService.getTargetAirports(this.travelStartDto).subscribe(
       (res) => {
+        this.loading = false;
         this.router.navigate(['/destination-results'], { state: { results: res, request:  this.travelStartDto} });
       },
       (error) => {
+        this.loading = false;
         console.log(error);
       }
     );
