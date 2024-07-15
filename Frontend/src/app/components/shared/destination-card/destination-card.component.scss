@@ -1,0 +1,11 @@
+.flag-image {
+  height: 80px; /* Fixed height for image container */
+  display: flex;
+  justify-content: center; /* Center image horizontally */
+  align-items: center; /* Center image vertically */
+}
+
+.flag-image img {
+  max-height: 100%; /* Ensure image fits within container height */
+  width: auto; /* Maintain aspect ratio */
+}

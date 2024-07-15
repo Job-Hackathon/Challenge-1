@@ -1,8 +1,12 @@
 <div style="border: 1px solid black" #cardDiv>
-  <p>{{ destination.destinationAirportName }}</p>
-  <p>{{ destination.destinationAirportCode }}</p>
-  <img [src]="destination.imageUrl !== 'cooming soon!' ? destination.imageUrl : placeholderUrl" alt="Destination Image">
-  <p>Distance from origin airport: {{ roundToNearestInteger(destination.distance) }} km</p>
+  <p>{{ getCountryFullName(destination.destinationAirportCountry) }}</p>
+  <p>{{ removeAirportWordAndShorten(destination.destinationAirportName) }} - {{ destination.destinationAirportCode }} </p>
+
+  <div class="flag-image">
+    <img [src]="getCountryImagePath(destination.destinationAirportCountry)" alt="Destination flag">
+  </div>
+
+  <p>Distance: {{ roundToNearestInteger(destination.distance) }} km</p>
   <hr>
   <p>Temperature at location: {{ roundToNearestInteger(destination.locationTemperature) }} °C</p>
   <p>Weather at location: {{ destination.target_weather }}</p>

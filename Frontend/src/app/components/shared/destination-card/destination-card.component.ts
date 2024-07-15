@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PossibleTravelLocationDto } from '../../../dtos';
+import { countryNames, countryImages } from '../../../enums';
 
 @Component({
   selector: 'app-destination-card',
@@ -13,6 +13,7 @@ export class DestinationCardComponent implements AfterViewInit{
   @ViewChild('cardDiv') cardDiv!: ElementRef<HTMLDivElement>;
 
   @Input() destination: PossibleTravelLocationDto = {
+    destinationAirportCountry: "",
     destinationAirportCode: "",
     destinationAirportName: "",
     distance: 0,
@@ -27,7 +28,6 @@ export class DestinationCardComponent implements AfterViewInit{
 
 
   ngAfterViewInit(): void {
-    console.log("HELLO")
     // Ensure cardDiv is available and has width
     if (this.cardDiv && this.cardDiv.nativeElement.offsetWidth) {
       const width = this.cardDiv.nativeElement.offsetWidth - 2;
@@ -35,8 +35,6 @@ export class DestinationCardComponent implements AfterViewInit{
       this.cdr.detectChanges();
 
     } else {
-      console.log("NOT FOUND")
-
       // Fallback in case width isn't available (though it should be)
       this.placeholderUrl = 'https://placehold.co/300';
     }
@@ -44,5 +42,26 @@ export class DestinationCardComponent implements AfterViewInit{
 
   roundToNearestInteger(value: number): number {
     return Math.round(value);
+  }
+
+  getCountryFullName(code: string): string {
+    return countryNames[code] || 'Unknown'; // Handle if code is not found
+  }
+
+  getCountryImagePath(code: string): string {
+    return countryImages[code] || '';
+  }
+
+  removeAirportWordAndShorten(src: string): string {
+    // at max 30 characters
+
+    // remove any remaining string if a '(' is found
+    const index = src.indexOf('(');
+
+    if (index != -1 ) {
+      src = src.substring(0, index);
+    }
+
+    return src.replace('Airport', '');
   }
 }
