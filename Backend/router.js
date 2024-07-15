@@ -26,12 +26,15 @@ router.post('/api/v1/close-airports', async (req, res) => {
 
 router.get('/api/v1/airport-weather', async (req, res) => {
   
+    try {
       const iata = req.query.iata;
       console.log(iata);
       const aw = await get_airport_weather(iata);
       res.status(200).json(aw);
+    } catch (e) {
+      res.json({"error": e}).status(400)
+    }
 
-  
 });
 
 
