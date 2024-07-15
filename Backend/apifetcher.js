@@ -102,7 +102,7 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
         const parms = {
             "latitude": airport_in_radius[5],
             "longitude": airport_in_radius[6],
-            "current": "temperature_2m",
+            "current": ["temperature_2m", "rain", "showers", "snowfall", "cloud_cover"],
             "forecast_days": 1
         }
         const url = "https://api.open-meteo.com/v1/forecast";
@@ -124,22 +124,12 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
     
         const weatherData = {
             current: {
-                time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
-                temperature2m: current.variables(0)?.value(),
-                relativeHumidity2m: current.variables(1)?.value(),
-                apparentTemperature: current.variables(2)?.value(),
-                isDay: current.variables(3)?.value(),
-                precipitation: current.variables(4)?.value(),
-                rain: current.variables(5)?.value(),
-                showers: current.variables(6)?.value(),
-                snowfall: current.variables(7)?.value(),
-                weatherCode: current.variables(8)?.value(),
-                cloudCover: current.variables(9)?.value(),
-                pressureMsl: current.variables(10)?.value(),
-                surfacePressure: current.variables(11)?.value(),
-                windSpeed10m: current.variables(12)?.value(),
-                windDirection10m: current.variables(13)?.value(),
-                windGusts10m: current.variables(14)?.value(),
+            time: new Date((Number(current.time()) + utcOffsetSeconds) * 1000),
+            temperature2m: current.variables(0).value(),
+            rain: current.variables(1).value(),
+            showers: current.variables(2).value(),
+            snowfall: current.variables(3).value(),
+            cloudCover: current.variables(4).value(),
             },
         
         };
@@ -148,14 +138,63 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
 
         const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, airport_in_radius[5], airport_in_radius[6]);
 
-        valid_airports.push({
-            destinationAirportCode: airport_in_radius[2],
-            destinationAirportName: airport_in_radius[4],
-            distance: distance,
-            target_weather: "cooming soon!",
-            locationTemperature: weatherData.current.temperature2m,
-            imageUrl: 'cooming soon!'
-        });
+        switch (target_weather) {
+            case "sunny":
+                if (weatherData.current.showers == 0 && weatherData.current.rain == 0 && weatherData.current.cloudCover <= 70) {
+                    valid_airports.push({
+                        destinationAirportCode: airport_in_radius[2],
+                        destinationAirportName: airport_in_radius[4],
+                        distance: distance,
+                        target_weather: "sunny",
+                        locationTemperature: weatherData.current.temperature2m,
+                        imageUrl: 'cooming soon!'
+                    });
+                }
+                break;
+            case "cloudy":
+                if (weatherData.current.cloudCover > 90) {
+                    valid_airports.push({
+                        destinationAirportCode: airport_in_radius[2],
+                        destinationAirportName: airport_in_radius[4],
+                        distance: distance,
+                        target_weather: "cloudy",
+                        locationTemperature: weatherData.current.temperature2m,
+                        imageUrl: 'cooming soon!'
+                    });
+                }
+                break;
+            case "rainy":
+                if (weatherData.current.showers > 0.2) {
+                    valid_airports.push({
+                        destinationAirportCode: airport_in_radius[2],
+                        destinationAirportName: airport_in_radius[4],
+                        distance: distance,
+                        target_weather: "rainy",
+                        locationTemperature: weatherData.current.temperature2m,
+                        imageUrl: 'cooming soon!'
+                    }); 
+                }
+            
+                break;
+            case "snowy":
+                if (weatherData.current.snowfall > 0) {
+                    valid_airports.push({
+                        destinationAirportCode: airport_in_radius[2],
+                        destinationAirportName: airport_in_radius[4],
+                        distance: distance,
+                        target_weather: "snowy",
+                        locationTemperature: weatherData.current.temperature2m,
+                        imageUrl: 'cooming soon!'
+                    }); 
+                }
+                break;
+        
+            default:
+                return [];
+                break;
+        }
+
+
 
     }
 
