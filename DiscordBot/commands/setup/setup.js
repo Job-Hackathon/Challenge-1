@@ -12,7 +12,7 @@ module.exports = {
     callback: (client, interaction) => {
 
         try {
-            const { embed, files } = CustomEmbed("Destination Finder ☁️", "Challenge 1 of the hackathon by Kevin Chromik")
+            const { embed, files } = CustomEmbed("Destination Finder ☁️", "Challenge 1 of the hackathon by Kevin Chromik", [])
 
 
             const btn = new ButtonBuilder()

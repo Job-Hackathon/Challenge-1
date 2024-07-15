@@ -10,6 +10,7 @@ module.exports = async (client, interaction) => {
         const distance = interaction.fields.getTextInputValue('distance');
         const mintemp = interaction.fields.getTextInputValue('mintemp');
         const maxtemp = interaction.fields.getTextInputValue('maxtemp');
+        const weathertype = interaction.fields.getTextInputValue('wtype');
 
         try {
 
@@ -19,7 +20,7 @@ module.exports = async (client, interaction) => {
     axios.post('http://127.0.0.1:4000/api/v1/close-airports', {
         originAirportCode: airport,
         maxRadius: distance,
-        targetWeather: "test",
+        targetWeather: weathertype,
         minimalTemperature: mintemp,
         maximalTemperature: maxtemp
     })

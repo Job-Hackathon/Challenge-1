@@ -30,12 +30,18 @@ module.exports = async (client, interaction) => {
             .setLabel('max. Temp (°C)')
             .setStyle(TextInputStyle.Short)
 
+            const weatherType = new TextInputBuilder()
+            .setCustomId('wtype')
+            .setLabel('Wetter Typ (sunny, cloudy, snowy, rainy)')
+            .setStyle(TextInputStyle.Short)
+
             const actionrow1 = new ActionRowBuilder().addComponents(Airport);
             const actionrow2 = new ActionRowBuilder().addComponents(Entfernung);
             const actionrow3 = new ActionRowBuilder().addComponents(minTeamp);
             const actionrow4 = new ActionRowBuilder().addComponents(maxTemp);
+            const actionrow5 = new ActionRowBuilder().addComponents(weatherType)
 
-            modal.addComponents(actionrow1, actionrow2, actionrow3, actionrow4);
+            modal.addComponents(actionrow1, actionrow2, actionrow3, actionrow4, actionrow5);
 
             await interaction.showModal(modal)
 
