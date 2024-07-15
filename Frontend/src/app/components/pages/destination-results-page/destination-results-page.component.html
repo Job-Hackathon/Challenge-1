@@ -3,9 +3,9 @@
 
   <div style="background-color: #f0f0f0; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
     <h5 style="font-family: 'Arial', sans-serif; color: #666;">
-      Searching for a destination within {{ request.maxRadius }} miles from {{ request.originAirportCode }}
-      with a temperature between {{ request.minimalTemperature }}°F and {{ request.maximalTemperature }}°F,
-      and {{ request.targetWeather }} weather condition.
+      Searching for a destination within {{ request.maxRadius }} km from {{ request.originAirportCode }}
+      with a temperature between {{ request.minimalTemperature }}°C and {{ request.maximalTemperature }}°C,
+      and <strong>{{ request.targetWeather }}</strong> weather condition.
     </h5>
   </div>
 
