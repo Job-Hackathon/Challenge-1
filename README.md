@@ -3,7 +3,7 @@
 
 This is our project for the first challenge of the mini hackathon. We decided to code a destination finder to find the perfect flight for you based on your preferred weather conditions.
 
-We coded ab WebApp <a href="">Link</a> and a Discord Bot <a href="">Discord Bot</a>
+We coded ab WebApp <a href="http://45.93.250.193">Link</a> and a Discord Bot <a href="https://discord.gg/3BdcX8rZdG">Discord Bot</a>
 
 
 ## Authors
