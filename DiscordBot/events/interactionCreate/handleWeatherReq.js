@@ -8,11 +8,11 @@ module.exports = async (client, interaction) => {
 
             const modal = new ModalBuilder()
             .setCustomId('cw')
-            .setTitle('Weather App')
+            .setTitle('Destination Finder')
 
             const Airport = new TextInputBuilder()
             .setCustomId('airport')
-            .setLabel('Airport')
+            .setLabel('Airport Code (IATA)')
             .setStyle(TextInputStyle.Short)
 
             const Entfernung = new TextInputBuilder()

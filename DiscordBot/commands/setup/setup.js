@@ -12,12 +12,12 @@ module.exports = {
     callback: (client, interaction) => {
 
         try {
-            const { embed, files } = CustomEmbed("Weather App ☁️", "Challenge 1 of the hackathon by Kevin Chromik")
+            const { embed, files } = CustomEmbed("Destination Finder ☁️", "Challenge 1 of the hackathon by Kevin Chromik")
 
 
             const btn = new ButtonBuilder()
             .setCustomId('w')
-            .setLabel('Wetterdaten Abrufen')
+            .setLabel('Finden')
             .setStyle(ButtonStyle.Primary)
     
     
@@ -37,7 +37,7 @@ module.exports = {
     
             interaction.channel.send({
                 embeds: [embed],
-                //files: files,
+                files: files,
                 components: [row]
             });
 

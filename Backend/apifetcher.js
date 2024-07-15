@@ -19,10 +19,11 @@ const get_cords_by_iata = async (i) => {
             }
         }
 
-        throw new Error(`Airport with IATA code ${i} not found`);
     } catch (error) {
         console.error(`Error in get_cords_by_iata function: ${error.message}`);
+        return "err";
         throw error;
+        
     }
 }
 
@@ -72,6 +73,7 @@ const get_airports_in_radius = async (origin_cords, radius) => {
         const latitude = parseFloat(airport[5]);
         const longitude = parseFloat(airport[6]);
         const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, latitude, longitude);
+        if (distance == 0) continue;
         if (distance <= radius) {
             valid_airports.push(airport)
         }
@@ -162,5 +164,6 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
 }
 
 module.exports = {
-    close_airports
+    close_airports,
+    get_cords_by_iata
 };
