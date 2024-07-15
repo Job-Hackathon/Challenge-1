@@ -12,13 +12,15 @@ router.post('/api/v1/close-airports', async (req, res) => {
 
 
     const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
-    if (await get_cords_by_iata(originAirportCode) == "err") {
-      res.json({"error": "Airportcode not found"});
-      return;
-    }
-    const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
 
-    res.json(ca);
+    try {
+      const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
+      res.json(ca);
+    } catch ({ name, message }){
+      return res.status(400).send({
+        message: message
+     });
+    }
 
 });
 

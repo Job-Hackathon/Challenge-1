@@ -2,7 +2,7 @@ export interface PossibleTravelLocationDto {
   destinationAirportCode: string;
   destinationAirportName: string;
   distance: number;
-  targetWeather: string;
+  target_weather: string;
   locationTemperature: number;
   imageUrl: string;
 }
