@@ -24,3 +24,7 @@
   width: 3rem; /* Adjust size of spinner */
   height: 3rem; /* Adjust size of spinner */
 }
+
+.white-replace {
+  filter: brightness(0) invert(1) grayscale(1) brightness(1.5);
+}
