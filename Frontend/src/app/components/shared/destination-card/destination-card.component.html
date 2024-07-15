@@ -1,4 +1,4 @@
-<div style="border: 1px solid black; border-radius: 10px;" #cardDiv (click)="showWeatherModal()">
+<div style="border: 1px solid black; border-radius: 10px;" #cardDiv>
   <h5><u>{{ getCountryFullName(destination.destinationAirportCountry) }}</u></h5>
 
   <p>{{ removeAirportWordAndShorten(destination.destinationAirportName) }} - {{ destination.destinationAirportCode }}</p>
@@ -16,7 +16,10 @@
     </a>
   </div>
 
-  <hr>
-  <p>Temperature at location: {{ roundToNearestInteger(destination.locationTemperature) }} °C</p>
-  <p>Weather at location: {{ destination.target_weather }}</p>
+  <hr style="margin-bottom: 0;">
+
+  <div (click)="showWeatherModal()" style="background-color: #f0f0f0; border-radius: 0 0 10px 10px; padding: 0.5em; padding-top: 1em;">
+    <p>Temperature at location: {{ roundToNearestInteger(destination.locationTemperature) }} °C</p>
+    <p>Weather at location: {{ destination.target_weather }}</p>
+  </div>
 </div>

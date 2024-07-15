@@ -1,2 +1,12 @@
-<p>weather-modal works!</p>
-<p>{{weatherData}}</p>
+<div style="margin: 1em;">
+  <h2>Weather forecast for <u>{{ weatherData.destination.destinationAirportName }}</u></h2>
+  <div *ngFor="let forecastDay of weatherData.forecast" style="margin: 0.5em; padding: 0.5em;">
+    <p><u>{{ formatDate(forecastDay.time) }}</u></p>
+
+    <span class="weather-info">
+      <i class="{{ getWeatherIconFromData(forecastDay) }} weather-icon"></i>
+      <p style="margin-top: 1em;">{{ roundToNearestInteger(forecastDay.temperature2mMin) }}-{{ roundToNearestInteger(forecastDay.temperature2mMax) }}°C</p>
+    </span>
+
+  </div>
+</div>

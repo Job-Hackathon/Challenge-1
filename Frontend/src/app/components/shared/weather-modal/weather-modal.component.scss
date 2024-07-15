@@ -1,0 +1,9 @@
+.weather-info {
+  display: flex;
+  align-items: center;
+}
+
+.weather-icon {
+  font-size: 2em; /* Adjust this value to make the icon bigger or smaller */
+  margin-right: 0.5em; /* Space between the icon and the text */
+}
