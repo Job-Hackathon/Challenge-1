@@ -30,7 +30,7 @@ module.exports = async (client, interaction) => {
             .setLabel('max. Temp (°C)')
             .setStyle(TextInputStyle.Short)
 
-            const weatherType = new TextInputBuilder
+            const weatherType = new TextInputBuilder()
             .setCustomId('wtype')
             .setLabel('Wetter Typ (sunny, cloudy, snowy, rainy)')
             .setStyle(TextInputStyle.Short)
