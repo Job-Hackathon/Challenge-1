@@ -30,6 +30,7 @@ router.get('/api/v1/airport-weather', async (req, res) => {
       const iata = req.query.iata;
       console.log(iata);
       const aw = await get_airport_weather(iata);
+      console.log(aw)
       res.status(200).json(aw);
     } catch (e) {
       res.json({"error": e}).status(400)
