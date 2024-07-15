@@ -2,6 +2,7 @@
   background-color: #ffc107; /* Bootstrap's warning color for active state */
   color: #212529; /* Text color for active state */
   border-color: #ffc107; /* Border color for active state */
+  z-index: 1; /* Ensure active button is above default buttons */
 }
 
 .btn.active i {
@@ -18,11 +19,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999; /* Ensure loading overlay is above everything else */
 }
 
 .loading-overlay .spinner-border {
   width: 3rem; /* Adjust size of spinner */
   height: 3rem; /* Adjust size of spinner */
+  z-index: 1000; /* Ensure spinner is above the overlay and other content */
 }
 
 .white-replace {

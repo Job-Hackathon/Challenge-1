@@ -11,15 +11,30 @@
       <div class="row">
         <label for="startAirport" class="col-form-label text-end text-muted col-md-4">Departure Airport:</label>
         <div class="col-md-8">
-          <input type="text" id="startAirport" name="startAirport" placeholder="Airport name" class="form-control"
-                 [(ngModel)]="currentInputFieldValue" list="airport-suggestions" (input)="onAirportInputChange()" (change)="onAirportSelection(currentInputFieldValue)" autocomplete="off" required>
-          <datalist id="airport-suggestions">
-            <ng-container *ngFor="let airport of matchingAirports">
-              <option [value]="airport.airport" [label]="airport.iata"></option>
-            </ng-container>
-          </datalist>
-          <div class="invalid-feedback">Airport name is required</div>
-          <small id="startAirportHelp" class="form-text text-muted">Your chosen airport is: {{ travelStartDto.originAirportCode }}</small>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="airportType" id="radioAirportName" value="name" [(ngModel)]="airportInputType" required>
+            <label class="form-check-label" for="radioAirportName">Enter Airport Name:</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="airportType" id="radioAirportIATA" value="iata" [(ngModel)]="airportInputType">
+            <label class="form-check-label" for="radioAirportIATA">Use IATA Code:</label>
+          </div>
+          <div *ngIf="airportInputType == 'name'">
+            <input type="text" id="startAirport" name="startAirport" placeholder="Airport name" class="form-control"
+                  [(ngModel)]="currentInputFieldValue" list="airport-suggestions" (input)="onAirportInputChange()" (change)="onAirportSelection(currentInputFieldValue)" autocomplete="off" required>
+            <datalist id="airport-suggestions">
+              <ng-container *ngFor="let airport of matchingAirports">
+                <option [value]="airport.airport" [label]="airport.iata"></option>
+              </ng-container>
+            </datalist>
+            <div class="invalid-feedback">Airport name is required</div>
+            <small id="startAirportHelp" class="form-text text-muted">Your chosen airport is: {{ travelStartDto.originAirportCode }}</small>
+          </div>
+          <div *ngIf="airportInputType == 'iata'">
+            <input type="text" id="startAirport" name="startAirport" placeholder="Airport IATA" class="form-control"
+                  [(ngModel)]="travelStartDto.originAirportCode" required>
+            <div class="invalid-feedback">Airport IATA is required</div>
+          </div>
         </div>
       </div>
     </div>

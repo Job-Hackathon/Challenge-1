@@ -23,6 +23,8 @@ export class InitialDestinationSearchPageComponent implements OnInit {
     private router: Router
   ) {}
 
+  airportInputType: string = "name";
+
   travelStartDto: TravelStartDto = {
     originAirportCode: "",
     maxRadius: 2000,
