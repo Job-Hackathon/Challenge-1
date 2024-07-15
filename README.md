@@ -14,11 +14,9 @@ We coded ab WebApp <a href="">Link</a> and a Discord Bot <a href="">Discord Bot<
 
 
 ## Screenshots
-https://cdn.discordapp.com/attachments/1262385494948315157/1262385495749693562/image.png?ex=6696679c&is=6695161c&hm=dead95b373e18d564a680887eda8346ca9bc2812cec8bbd0ef9bfb9a1aef3994&
-https://cdn.discordapp.com/attachments/1262385494948315157/1262385496533762120/image.png?ex=6696679c&is=6695161c&hm=16d90a5319f8b433e4512cebfebb51037d7b5bf87cca257895b3b066115ca494&
-https://cdn.discordapp.com/attachments/1262385494948315157/1262385497075093556/image.png?ex=6696679c&is=6695161c&hm=e6aa5a4e3cb9f049164c8abb6ef38d2b8b0a15b95a90831093a4a25eb18d04d9&
-https://cdn.discordapp.com/attachments/1262323524648042589/1262323603115081880/image.png?ex=66962df7&is=6694dc77&hm=4596dadc408e3731ecded2756373ada765edae23d8b86a37b5c3c8fc473651aa&
-https://cdn.discordapp.com/attachments/1262323524648042589/1262324675384442920/image.png?ex=66962ef7&is=6694dd77&hm=6a1acb9dec99dbc4d0e64d6df7236579707fa581285c8eecfadbceb8b1a33ebe&
-
-
+![image](https://github.com/user-attachments/assets/b1098eaf-e479-4e3d-899a-6e2dc29033a8)
+![2](https://github.com/user-attachments/assets/f0c15c4a-0e96-4c2c-b64b-43e3d3e4dcce)
+![3](https://github.com/user-attachments/assets/2b792bdd-4c58-4344-b23c-adfa2d0af843)
+![5](https://github.com/user-attachments/assets/3718673c-5989-407e-9dcd-3eb1c1b7f994)
+![7](https://github.com/user-attachments/assets/bec2dbc5-1428-44a6-abe5-db94b0137134)
 
