@@ -1,7 +1,59 @@
-<h1 class="display-4 text-primary text-center my-3">DESTINATION FINDER</h1>
-<br>
-<div class="d-flex justify-content-center my-3">
-  <button type="button" class="btn btn-primary" [routerLink]="['/destination-search']">
-    Go to Destination Search Page
-  </button>
+<div class="container">
+  <h1 class="display-4 text-primary text-center my-3">DESTINATION FINDER</h1>
+
+  <div class="text-center">
+    <img src="airportStock.jpg" alt="Airport Image" class="img-fluid">
+  </div>
+
+  <div class="text-center">
+    <p class="lead">Discover your perfect travel destination based on your starting airport, distance, and expected weather conditions.</p>
+  </div>
+
+  <div class="d-flex justify-content-center my-5">
+    <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/destination-search']">
+      Start Your Journey
+    </button>
+  </div>
+
+  <hr>
+
+  <div class="text-center">
+    <h2>How It Works</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="feature-item">
+          <i class="fas fa-plane feature-icon text-primary"></i>
+          <h3>Enter Start Airport</h3>
+          <p>Input your departure airport.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-item">
+          <i class="fas fa-map-marker-alt feature-icon text-primary"></i>
+          <h3>Set Max Distance</h3>
+          <p>Specify the maximum distance you want to travel.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-item">
+          <i class="fas fa-sun feature-icon text-primary"></i>
+          <h3>Choose Weather Condition</h3>
+          <p>Select the weather condition you prefer.</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="feature-item">
+          <i class="fas fa-search feature-icon text-primary"></i>
+          <h3>Find Matching Airports</h3>
+          <p>Click 'Start Your Journey' to find airports matching your criteria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer class="text-center text-muted">
+    <p>&copy; 2024 Destination Finder. All rights reserved.</p>
+  </footer>
 </div>

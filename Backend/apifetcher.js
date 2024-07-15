@@ -29,7 +29,7 @@ const get_cords_by_iata = async (i) => {
 
 const get_all_airports = async () => {
 
-    const filecontent = await fs.readFile('../DATA/top_airports.csv', 'utf-8');
+    const filecontent = await fs.readFile('../DATA/target_airports.csv', 'utf-8');
     const { data } = Papa.parse(filecontent, {header: false});
 
     const airports = []
@@ -142,6 +142,7 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             case "sunny":
                 if (weatherData.current.showers == 0 && weatherData.current.rain == 0 && weatherData.current.cloudCover <= 70) {
                     valid_airports.push({
+                        destinationAirportCountry: airport_in_radius[0],
                         destinationAirportCode: airport_in_radius[2],
                         destinationAirportName: airport_in_radius[4],
                         distance: distance,
@@ -154,6 +155,7 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             case "cloudy":
                 if (weatherData.current.cloudCover > 90) {
                     valid_airports.push({
+                        destinationAirportCountry: airport_in_radius[0],
                         destinationAirportCode: airport_in_radius[2],
                         destinationAirportName: airport_in_radius[4],
                         distance: distance,
@@ -166,6 +168,7 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             case "rainy":
                 if (weatherData.current.showers > 0.2) {
                     valid_airports.push({
+                        destinationAirportCountry: airport_in_radius[0],
                         destinationAirportCode: airport_in_radius[2],
                         destinationAirportName: airport_in_radius[4],
                         distance: distance,
@@ -179,6 +182,7 @@ const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp
             case "snowy":
                 if (weatherData.current.snowfall > 0) {
                     valid_airports.push({
+                        destinationAirportCountry: airport_in_radius[0],
                         destinationAirportCode: airport_in_radius[2],
                         destinationAirportName: airport_in_radius[4],
                         distance: distance,

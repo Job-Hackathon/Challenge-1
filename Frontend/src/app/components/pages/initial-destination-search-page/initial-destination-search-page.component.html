@@ -1,137 +1,109 @@
-<div class="container">
-  <h1 class="mt-3" style="margin-left: 4em" >Gleich kennen wir deinen perfekten Urlaubsort...</h1>
+<br>
+<br>
+<div class="container text-center">
+  <h1 class="mt-3">We are about to find your perfect matching destination ...</h1>
 </div>
 
-<br>
 
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <div class="mb-2 col-lg-6">
-    <div class="row">
-      <label for="startAirport" class="col-form-label text-md-end text-muted col-md-2 col-lg-4">Startflughafen </label>
-      <div class="col-md-10 col-lg-8">
-        <input
-          type="text"
-          id="startAirport"
-          name="startAirport"
-          placeholder="Flughafen Name"
-          class="form-control w-65"
-          [(ngModel)]="currentInputFieldValue"
-          list="airport-suggestions"
-          (input)="onAirportInputChange()"
-          (change)="onAirportSelection(currentInputFieldValue)"
-          autocomplete="off"
-          required
-        />
-        <datalist id="airport-suggestions">
-          <ng-container *ngFor="let airport of matchingAirports">
-            <option [value]="airport.airport" [label]="airport.iata"></option>
-          </ng-container>
-        </datalist>
-        <div class="invalid-feedback">Name vom Startflughafen ist notwendig</div>
-        <small id="startAirportHelp" class="form-text text-muted">Der gewählte Flughafen ist: {{ travelStartDto.originAirportCode }}</small>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="mb-2 col-lg-6">
-    <div class="row">
-      <label for="maxRadius" class="col-form-label text-md-end text-muted col-md-2 col-lg-4">Maximale Entfernung (in km): </label>
-      <div class="col-md-10 col-lg-8">
-        <input
-          type="number"
-          id="maxRadius"
-          name="maxRadius"
-          class="form-control"
-          [(ngModel)]="travelStartDto.maxRadius"
-          min="0"
-          max="100000"
-          step="100"
-          required
-        />
-        <div class="invalid-feedback">Radius ist notwendig</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mb-2 col-lg-6">
-    <div class="row">
-      <label for="temperatureRange" class="col-form-label text-md-end text-muted col-md-2 col-lg-4">Temperatur Bereich (in °C): </label>
-      <div class="col-md-10 col-lg-8">
-        <div class="row">
-          <div class="col-md-6">
-            <input
-              type="number"
-              id="minTemp"
-              name="minTemp"
-              class="form-control"
-              [(ngModel)]="travelStartDto.minimalTemperature"
-              placeholder="Minimale Temperatur"
-              min="0"
-              max="45"
-              step="1"
-              required
-            />
+<div class="container" style="margin-top: 10%">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" class="col-lg-6 mx-auto">
+    <div class="mb-2">
+      <div class="row">
+        <label for="startAirport" class="col-form-label text-end text-muted col-md-4">Departure Airport:</label>
+        <div class="col-md-8">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="airportType" id="radioAirportName" value="name" [(ngModel)]="airportInputType" required>
+            <label class="form-check-label" for="radioAirportName">Enter Airport Name:</label>
           </div>
-          <div class="col-md-6">
-            <input
-              type="number"
-              id="maxTemp"
-              name="maxTemp"
-              class="form-control"
-              [(ngModel)]="travelStartDto.maximalTemperature"
-              placeholder="Maximale Temperatur"
-              min="0"
-              max="45"
-              step="1"
-              required
-            />
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="airportType" id="radioAirportIATA" value="iata" [(ngModel)]="airportInputType">
+            <label class="form-check-label" for="radioAirportIATA">Use IATA Code:</label>
+          </div>
+          <div *ngIf="airportInputType == 'name'">
+            <input type="text" id="startAirport" name="startAirport" placeholder="Airport name" class="form-control"
+                  [(ngModel)]="currentInputFieldValue" list="airport-suggestions" (input)="onAirportInputChange()" (change)="onAirportSelection(currentInputFieldValue)" autocomplete="off" required>
+            <datalist id="airport-suggestions">
+              <ng-container *ngFor="let airport of matchingAirports">
+                <option [value]="airport.airport" [label]="airport.iata"></option>
+              </ng-container>
+            </datalist>
+            <div class="invalid-feedback">Airport name is required</div>
+            <small id="startAirportHelp" class="form-text text-muted">Your chosen airport is: {{ travelStartDto.originAirportCode }}</small>
+          </div>
+          <div *ngIf="airportInputType == 'iata'">
+            <input type="text" id="startAirport" name="startAirport" placeholder="Airport IATA" class="form-control"
+                  [(ngModel)]="travelStartDto.originAirportCode" required>
+            <div class="invalid-feedback">Airport IATA is required</div>
           </div>
         </div>
-        <div class="invalid-feedback">Temperatur Angabe ist notwendig</div>
       </div>
     </div>
-  </div>
 
-  <div class="mb-2 col-lg-6">
-    <div class="row">
-      <label for="weatherPreference" class="col-form-label text-md-end text-muted col-md-2 col-lg-4">Wetterpräferenz: </label>
-      <div class="col-md-10 col-lg-8">
-        <button type="button"
-                class="btn btn-secondary btn-lg me-2"
-                [class.active]="travelStartDto.targetWeather === 'sunny'"
-                (click)="setWeatherPreference('sunny')">
-          <i class="bi bi-brightness-high"></i>
-        </button>
-        <button type="button"
-                class="btn btn-secondary btn-lg me-2"
-                [class.active]="travelStartDto.targetWeather === 'cloudy'"
-                (click)="setWeatherPreference('cloudy')">
-          <i class="bi bi-cloud"></i>
-        </button>
-        <button type="button"
-                class="btn btn-secondary btn-lg me-2"
-                [class.active]="travelStartDto.targetWeather === 'rainy'"
-                (click)="setWeatherPreference('rainy')">
-          <i class="bi bi-cloud-rain"></i>
-        </button>
-        <button type="button"
-                class="btn btn-secondary btn-lg"
-                [class.active]="travelStartDto.targetWeather === 'snowy'"
-                (click)="setWeatherPreference('snowy')">
-          <i class="bi bi-snow"></i>
-        </button>
+    <div class="mb-2">
+      <div class="row">
+        <label for="maxRadius" class="col-form-label text-end text-muted col-md-4">Maximum distance (in km):</label>
+        <div class="col-md-8">
+          <input type="number" id="maxRadius" name="maxRadius" class="form-control" [(ngModel)]="travelStartDto.maxRadius" min="0" max="100000" step="100" required>
+          <div class="invalid-feedback">Distance is required</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="mb-2 col-lg-6">
-    <div class="row justify-content-center">
-      <div class="col-md-10 col-lg-8 text-center">
-        <button type="submit" class="btn btn-primary btn-lg">Bestätigen</button>
+    <div class="mb-2">
+      <div class="row">
+        <label for="temperatureRange" class="col-form-label text-end text-muted col-md-4">Temperature range (in °C):</label>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="number" id="minTemp" name="minTemp" class="form-control" [(ngModel)]="travelStartDto.minimalTemperature" placeholder="Lowest temperature" min="0" max="45" step="1" required>
+            </div>
+            <div class="col-md-6">
+              <input type="number" id="maxTemp" name="maxTemp" class="form-control" [(ngModel)]="travelStartDto.maximalTemperature" placeholder="Highest temperature" min="0" max="45" step="1" required>
+            </div>
+          </div>
+          <div class="invalid-feedback">Temperature range is required</div>
+        </div>
       </div>
     </div>
+
+    <div class="mb-2">
+      <div class="row">
+        <label for="weatherPreference" class="col-form-label text-end text-muted col-md-4">Weather:</label>
+        <div class="col-md-8">
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary btn-lg me-2" [class.active]="travelStartDto.targetWeather === 'sunny'" (click)="setWeatherPreference('sunny')">
+              <i class="bi bi-brightness-high"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg me-2" [class.active]="travelStartDto.targetWeather === 'cloudy'" (click)="setWeatherPreference('cloudy')">
+              <i class="bi bi-cloud"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg me-2" [class.active]="travelStartDto.targetWeather === 'rainy'" (click)="setWeatherPreference('rainy')">
+              <i class="bi bi-cloud-rain"></i>
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg" [class.active]="travelStartDto.targetWeather === 'snowy'" (click)="setWeatherPreference('snowy')">
+              <i class="bi bi-snow"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="mb-2">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <button type="submit" class="btn btn-primary btn-lg">
+            <img src="/plane.png" alt="Plane Icon" style="width: 30px; height: 30px; margin-right: 5px;" class="white-replace">
+            Start your journey now!
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Loading overlay -->
+<div *ngIf="loading" class="loading-overlay text-center mt-3">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
-
-</form>
-
+</div>

@@ -23,6 +23,8 @@ export class InitialDestinationSearchPageComponent implements OnInit {
     private router: Router
   ) {}
 
+  airportInputType: string = "name";
+
   travelStartDto: TravelStartDto = {
     originAirportCode: "",
     maxRadius: 2000,
@@ -30,6 +32,8 @@ export class InitialDestinationSearchPageComponent implements OnInit {
     minimalTemperature: 10,
     maximalTemperature: 40
   };
+
+  loading: boolean = false; // Variable to control loading overlay
 
   currentInputFieldValue: string = "";
 
@@ -58,11 +62,14 @@ export class InitialDestinationSearchPageComponent implements OnInit {
   }
 
   onSubmit(form: NgForm): void {
+    this.loading = true;
     this.airportFinderService.getTargetAirports(this.travelStartDto).subscribe(
       (res) => {
+        this.loading = false;
         this.router.navigate(['/destination-results'], { state: { results: res, request:  this.travelStartDto} });
       },
       (error) => {
+        this.loading = false;
         console.log(error);
       }
     );
