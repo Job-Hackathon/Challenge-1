@@ -1,6 +1,8 @@
 import { Component, Input, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { PossibleTravelLocationDto } from '../../../dtos';
 import { countryNames, countryImages } from '../../../enums';
+import { AirportWeatherService, ModalService } from '../../../services';
+import { WeatherModalDataDto } from '../../../dtos';
 
 @Component({
   selector: 'app-destination-card',
@@ -22,7 +24,11 @@ export class DestinationCardComponent implements AfterViewInit{
     imageUrl: ""
   }
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private modalService: ModalService,
+    private airportWeatherService: AirportWeatherService
+  ) {}
 
   placeholderUrl: string = 'https://placehold.co/300';
 
@@ -66,7 +72,19 @@ export class DestinationCardComponent implements AfterViewInit{
   }
 
   showWeatherModal(): void {
-    console.log('Show weather modal');
-  }
+    this.airportWeatherService.getWeatherAirport(this.destination.destinationAirportCode).subscribe(
+      (res) => {
+        let weatherModalData: WeatherModalDataDto = {
+          destination: this.destination,
+          forecast: res
+        }
 
+        this.modalService.openWeatherModal(weatherModalData);
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+
+  }
 }

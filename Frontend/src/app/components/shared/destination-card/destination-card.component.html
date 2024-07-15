@@ -1,5 +1,5 @@
-<div style="border: 1px solid black" #cardDiv (click)="showWeatherModal()">
-  <p>{{ getCountryFullName(destination.destinationAirportCountry) }}</p>
+<div style="border: 1px solid black; border-radius: 10px;" #cardDiv (click)="showWeatherModal()">
+  <h5><u>{{ getCountryFullName(destination.destinationAirportCountry) }}</u></h5>
 
   <p>{{ removeAirportWordAndShorten(destination.destinationAirportName) }} - {{ destination.destinationAirportCode }}</p>
 
