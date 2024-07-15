@@ -1,15 +1,21 @@
-<div style="border: 1px solid black" #cardDiv>
+<div style="border: 1px solid black" #cardDiv (click)="showWeatherModal()">
   <p>{{ getCountryFullName(destination.destinationAirportCountry) }}</p>
 
-  <a href="http://maps.google.com/?q={{destination.destinationAirportCode}}+Airport" target="_blank">
-    {{ removeAirportWordAndShorten(destination.destinationAirportName) }} - {{ destination.destinationAirportCode }}
-  </a>
+  <p>{{ removeAirportWordAndShorten(destination.destinationAirportName) }} - {{ destination.destinationAirportCode }}</p>
 
   <div class="flag-image">
     <img [src]="getCountryImagePath(destination.destinationAirportCountry)" alt="Destination flag">
   </div>
 
-  <p>Distance: {{ roundToNearestInteger(destination.distance) }} km</p>
+  <div style="display: flex; align-items: center; margin-left: 20%; margin-top: 1em;">
+    <p>Distance: {{ roundToNearestInteger(destination.distance) }} km</p>
+    <a href="http://maps.google.com/?q={{destination.destinationAirportCode}}+Airport" target="_blank" style="margin-top: -10%; margin-left: 1em;">
+      <span style="display: inline-block; vertical-align: middle; margin-right: 5px;">
+        <img src="gmaps.png" alt="Google Maps Icon" style="width: 20px; height: 20px;">
+      </span>
+    </a>
+  </div>
+
   <hr>
   <p>Temperature at location: {{ roundToNearestInteger(destination.locationTemperature) }} °C</p>
   <p>Weather at location: {{ destination.target_weather }}</p>

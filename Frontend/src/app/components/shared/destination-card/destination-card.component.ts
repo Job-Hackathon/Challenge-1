@@ -64,4 +64,9 @@ export class DestinationCardComponent implements AfterViewInit{
 
     return src.replace('Airport', '');
   }
+
+  showWeatherModal(): void {
+    console.log('Show weather modal');
+  }
+
 }
