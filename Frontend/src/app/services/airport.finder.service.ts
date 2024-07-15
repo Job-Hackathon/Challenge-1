@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Globals } from '../global/globals';
 import { Observable } from 'rxjs';
-import { AirportDto } from '../dtos';
+import { AirportDto, PossibleTravelLocationDto } from '../dtos';
 import { TravelStartDto } from '../dtos';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class AirportFinderService {
 
   constructor(private httpClient: HttpClient, private globals: Globals) {}
 
-  getTargetAirports(requestObject: TravelStartDto): Observable<AirportDto[]> {
-    return this.httpClient.post<AirportDto[]>(`${this.airportFinderBaseUri}`, requestObject);
+  getTargetAirports(requestObject: TravelStartDto): Observable<PossibleTravelLocationDto[]> {
+    return this.httpClient.post<PossibleTravelLocationDto[]>(`${this.airportFinderBaseUri}`, requestObject);
   }
 }

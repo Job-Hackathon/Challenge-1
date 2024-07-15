@@ -12,10 +12,14 @@ router.post('/api/v1/close-airports', async (req, res) => {
 
 
     const { originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature } = req.body;
-    const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
-
-    res.json(ca);
-
+    try {
+      const ca = await close_airports(originAirportCode, maxRadius, targetWeather, minimalTemperature, maximalTemperature);
+      res.json(ca);
+    } catch ({ name, message }){
+      return res.status(400).send({
+        message: message
+     });
+    }
 });
 
 

@@ -6,7 +6,7 @@ const path = require('path');
 const get_cords_by_iata = async (i) => {
     try {
         console.log(i);
-        const filePath = path.join(__dirname, '../DATA/top_airports.csv');
+        const filePath = path.join(__dirname, '../DATA/airport_data.csv');
         const filecontent = await fs.readFile(filePath, 'utf-8');
         const { data } = Papa.parse(filecontent, { header: false });
 
@@ -19,7 +19,7 @@ const get_cords_by_iata = async (i) => {
             }
         }
 
-        throw new Error(`Airport with IATA code ${IATA} not found`);
+        throw new Error(`Airport with IATA code ${i} not found`);
     } catch (error) {
         console.error(`Error in get_cords_by_iata function: ${error.message}`);
         throw error;
@@ -64,6 +64,11 @@ const get_airports_in_radius = async (origin_cords, radius) => {
     const airports = await get_all_airports();
     const valid_airports = [];
     for (const airport of airports) {
+
+        if (origin_cords.latitude - parseFloat(airport[5]) == 0 && origin_cords.longitude - parseFloat(airport[6]) == 0) {
+            continue
+        }
+        
         const latitude = parseFloat(airport[5]);
         const longitude = parseFloat(airport[6]);
         const distance = calculateDistance(origin_cords.latitude, origin_cords.longitude, latitude, longitude);
@@ -80,7 +85,14 @@ const get_airports_in_radius = async (origin_cords, radius) => {
 const close_airports = async (IATA, max_radius, target_weather, minTemp, maxTemp) => {
 
     const valid_airports = [];
-    const origin_cords = await get_cords_by_iata(IATA);
+    let origin_cords = [];
+    try {
+        origin_cords = await get_cords_by_iata(IATA);
+    } catch ({ name, message }){
+        console.log(name, message);
+        throw new Error(`Airport with IATA code ${IATA} not found`); 
+    }
+
     const airports_in_radius = await get_airports_in_radius(origin_cords, max_radius);
 
     for (const airport_in_radius of airports_in_radius) {
